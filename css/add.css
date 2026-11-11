@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+body {
+  background:
+    linear-gradient(135deg, rgba(248, 246, 242, 0.92) 0%, rgba(238, 233, 226, 0.92) 100%),
+    url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920') no-repeat center center
+      fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.form-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 580px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid #ece4dc;
+}
+h2 {
+  color: #2c2520;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+}
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5c5045;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e0d6cc;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #faf8f5;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #2c2520;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #cf7543;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(207, 117, 67, 0.1);
+}
+.section-divider {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 2px solid #f0e8e0;
+  font-weight: 700;
+  color: #cf7543;
+  font-size: 14px;
+}
+.btn-submit {
+  background: #b5785a;
+  color: white;
+  padding: 14px;
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(207, 117, 67, 0.25);
+}
+.btn-submit:hover {
+  background: #9f6649;
+  transform: none;
+}
+.btn-back {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  color: #8c7d70;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.btn-back:hover {
+  color: #cf7543;
+}

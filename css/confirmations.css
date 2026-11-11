@@ -1,0 +1,133 @@
+/* =====================================================================
+   "Are you sure?" confirmation pop-ups (Sign out, Delete, Accept order...)
+   Every corner is rounded and every button reacts when hovered.
+   ===================================================================== */
+
+/* Dark transparent layer behind the pop-up */
+.action-confirm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(38, 30, 24, 0.48);
+  animation: confirm-fade 0.18s ease-out;
+}
+
+.action-confirm-backdrop[hidden] {
+  display: none;
+}
+
+/* The pop-up box itself */
+.action-confirm-dialog {
+  width: min(420px, 100%);
+  padding: 26px;
+  border: 1px solid #e7ded5;
+  border-radius: 20px;
+  background: #fffdfa;
+  box-shadow: 0 18px 55px rgba(38, 30, 24, 0.2);
+  animation: confirm-pop 0.2s ease-out;
+}
+
+.action-confirm-dialog h2 {
+  margin: 0;
+  color: #2c2520;
+  font-size: 19px;
+}
+
+.action-confirm-dialog p {
+  margin: 10px 0 0;
+  color: #796d62;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Yes / No buttons */
+.action-confirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.action-confirm-buttons button {
+  min-width: 92px;
+  padding: 11px 18px;
+  border: 1px solid #e2dad1;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.action-confirm-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.action-confirm-buttons button:active {
+  transform: translateY(0);
+}
+
+.action-confirm-buttons button:focus-visible {
+  outline: 3px solid rgba(181, 120, 90, 0.35);
+  outline-offset: 2px;
+}
+
+/* "Yes" = quiet button, turns warm on hover */
+.action-confirm-yes {
+  background: #fff;
+  color: #2c2520;
+}
+
+.action-confirm-yes:hover {
+  border-color: #b5785a;
+  background: #fbefe8;
+  color: #9f6649;
+  box-shadow: 0 6px 14px rgba(181, 120, 90, 0.22);
+}
+
+/* "No" = main button, gets darker on hover */
+.action-confirm-no {
+  border-color: #b5785a !important;
+  background: #b5785a;
+  color: #fff;
+}
+
+.action-confirm-no:hover {
+  background: #9f6649;
+  box-shadow: 0 6px 14px rgba(159, 102, 73, 0.35);
+}
+
+/* Stops the page behind the pop-up from scrolling */
+body.confirm-open {
+  overflow: hidden;
+}
+
+/* Small open animations */
+@keyframes confirm-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes confirm-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

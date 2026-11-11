@@ -1,0 +1,9 @@
+# Nobody may open anything inside db/ by typing its URL (setup.sql, README, .php helpers).
+# PHP pages still load these files normally from the server side.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | BuildQuin</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <main class="auth-shell">
+        <section class="auth-visual" aria-label="BuildQuin building supplies">
+            <a class="brand" href="index.html"><span class="brand-mark">BQ</span><span>BuildQuin</span></a>
+            <div class="visual-copy">
+                <span class="eyebrow">CATALOG &amp; SUPPLIES</span>
+                <h1>Build better,<br>together.</h1>
+                <p>Quality roofing, paints, tiles and more, ready to order.</p>
+                <ul class="visual-points">
+                    <li>Browse the full product catalog</li>
+                    <li>Add to cart and order in minutes</li>
+                    <li>Get updates on every order</li>
+                </ul>
+            </div>
+            <span class="visual-caption">BUILDQUIN HARDWARE &amp; ARCHITECTURAL SUPPLIES</span>
+        </section>
+
+        <section class="auth-panel">
+            <div class="auth-content">
+                <div class="mobile-brand"><span class="brand-mark">BQ</span><span>BuildQuin</span></div>
+                <p class="eyebrow">WELCOME BACK</p>
+                <h2 id="formTitle">Customer sign in</h2>
+                <p class="intro" id="formIntro">Sign in to browse products, add to cart and track your orders.</p>
+
+                <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+                <div class="form-error" id="tokenError" role="alert" hidden>Unable to start a secure form. Refresh this page and try again.</div>
+
+                <div class="mode-tabs" role="tablist" aria-label="Account access">
+                    <button type="button" class="mode-tab active" id="userTab" role="tab" aria-selected="true">Customer</button>
+                    <button type="button" class="mode-tab" id="adminTab" role="tab" aria-selected="false">Admin / Staff</button>
+                </div>
+
+                <form id="loginForm" action="html/index.php?page=login" method="post">
+                    <input type="hidden" name="csrf_token" value="">
+                    <input type="hidden" name="account_type" value="user">
+                    <label for="loginEmail">Email address</label>
+                    <input id="loginEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="youremail@example.com" required>
+                    <div id="securityRow" hidden>
+                        <label for="securityPassword">Security password</label>
+                        <div class="field">
+                            <input id="securityPassword" name="security_password" type="password" autocomplete="off" maxlength="72" placeholder="Your own security password" disabled>
+                            <button type="button" class="toggle-pass" data-target="securityPassword" aria-label="Show password">Show</button>
+                        </div>
+                    </div>
+                    <label for="loginPassword" id="passwordLabel">Password</label>
+                    <div class="field">
+                        <input id="loginPassword" name="password" type="password" autocomplete="current-password" maxlength="72" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-pass" data-target="loginPassword" aria-label="Show password">Show</button>
+                    </div>
+                    <button class="submit-button" id="submitButton" type="submit" disabled><b id="submitLabel">Sign in</b> <span aria-hidden="true">&#8594;</span></button>
+                </form>
+
+                <p class="switch-note" id="registerPrompt">New here? <a href="html/register_user.php">Create a customer account</a></p>
+                <p class="switch-note" id="staffRegisterPrompt" hidden>New here? <a href="html/register_staff.php">Register as Admin / Staff</a></p>
+            </div>
+            <footer>&copy; <span id="year"></span> BuildQuin</footer>
+        </section>
+    </main>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const userTab = document.getElementById('userTab');
+        const adminTab = document.getElementById('adminTab');
+        const notice = document.getElementById('notice');
+
+        const messages = {
+            registered: ['Account created. You can sign in now.', 'success'],
+            staff_registered: ['Account created. Now sign in with your Gmail, security password and the password of your role.', 'success'],
+            email_exists: ['An account already uses that email address.', 'error'],
+            login_failed: ['Gmail or password is incorrect. Admin / Staff also need the correct security password.', 'error'],
+            wrong_portal: ['That account belongs to the other tab. Switch tabs and sign in again.', 'error'],
+            too_many_attempts: ['Too many failed attempts. Please wait 15 minutes and try again.', 'error'],
+            invalid_registration: ['Check the form. Use a valid email and matching passwords of at least 8 characters.', 'error'],
+            registration_error: ['The account could not be created. Please try again.', 'error'],
+            logged_out: ['You have signed out.', 'success'],
+            account_dropped: ['This account has been dropped by the admin and can no longer access the website.', 'error'],
+            account_suspended: ['This account is temporarily suspended by the admin. You can sign in again after the suspension ends.', 'error'],
+            invalid_request: ['The form expired. Refresh and try again.', 'error']
+        };
+
+        function showMode(mode) {
+            const isAdmin = mode === 'admin';
+            userTab.classList.toggle('active', !isAdmin);
+            adminTab.classList.toggle('active', isAdmin);
+            userTab.setAttribute('aria-selected', String(!isAdmin));
+            adminTab.setAttribute('aria-selected', String(isAdmin));
+            loginForm.elements.account_type.value = isAdmin ? 'admin' : 'user';
+
+            document.getElementById('formTitle').textContent = isAdmin ? 'Admin / Staff sign in' : 'Customer sign in';
+            document.getElementById('formIntro').textContent = isAdmin
+                ? 'Sign in with your Gmail, your security password and the password of your role.'
+                : 'Sign in to browse products, add to cart and track your orders.';
+            document.getElementById('submitLabel').textContent = isAdmin ? 'Sign in to workspace' : 'Sign in';
+            document.getElementById('securityRow').hidden = !isAdmin;
+            document.getElementById('securityPassword').disabled = !isAdmin;
+            document.getElementById('securityPassword').required = isAdmin;
+            document.getElementById('registerPrompt').hidden = isAdmin;
+            document.getElementById('staffRegisterPrompt').hidden = !isAdmin;
+            document.getElementById('passwordLabel').textContent = isAdmin ? 'Role password (the password of your role)' : 'Password';
+            document.getElementById('loginEmail').placeholder = isAdmin ? 'yourname@gmail.com' : 'youremail@example.com';
+            document.getElementById('loginPassword').placeholder = isAdmin ? 'Password for your role' : 'Enter your password';
+            document.getElementById('loginPassword').autocomplete = isAdmin ? 'off' : 'current-password';
+        }
+
+        userTab.addEventListener('click', () => showMode('user'));
+        adminTab.addEventListener('click', () => showMode('admin'));
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.querySelectorAll('.toggle-pass').forEach(button => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.target);
+                const show = input.type === 'password';
+                input.type = show ? 'text' : 'password';
+                button.textContent = show ? 'Hide' : 'Show';
+                button.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+            });
+        });
+
+        const query = new URLSearchParams(window.location.search);
+        if (query.get('mode') === 'admin') showMode('admin');
+        const found = messages[query.get('notice')];
+        if (found) {
+            notice.textContent = found[0];
+            const until = query.get('until');
+            if (until && query.get('notice') === 'account_suspended') notice.textContent += ' Suspended until ' + until + '.';
+            notice.classList.add(found[1]);
+            notice.hidden = false;
+        }
+
+        fetch('html/index.php?page=csrf', { credentials: 'same-origin' })
+            .then(response => {
+                if (!response.ok) throw new Error('Could not load form token.');
+                return response.json();
+            })
+            .then(data => {
+                if (data.loggedIn && query.get('notice') !== 'logged_out') {
+                    const landingPage = ['admin', 'staff'].includes(data.role) ? 'dashboard' : 'products';
+                    window.location.replace(`html/index.php?page=${landingPage}`);
+                    return;
+                }
+                document.querySelectorAll('input[name="csrf_token"]').forEach(input => {
+                    input.value = data.token;
+                });
+                document.getElementById('submitButton').disabled = false;
+            })
+            .catch(() => {
+                document.getElementById('tokenError').hidden = false;
+            });
+    </script>
+</body>
+</html>

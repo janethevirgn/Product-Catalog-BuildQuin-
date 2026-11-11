@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+body {
+  background:
+    linear-gradient(135deg, rgba(248, 246, 242, 0.92) 0%, rgba(238, 233, 226, 0.92) 100%),
+    url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920') no-repeat center center
+      fixed;
+  background-size: cover;
+  color: #2b2623;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.form-card {
+  background: rgba(255, 255, 255, 0.95);
+  max-width: 480px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ece4dc;
+}
+.form-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #2c2520;
+  margin-bottom: 8px;
+}
+.form-subtitle {
+  font-size: 13px;
+  color: #706357;
+  margin-bottom: 25px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3d2f24;
+  margin-bottom: 8px;
+}
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #e2dad1;
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+.form-input:focus {
+  border-color: #cf7543;
+  box-shadow: 0 4px 15px rgba(207, 117, 67, 0.15);
+}
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: #b5785a;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(70, 48, 34, 0.16);
+}
+.btn-submit:hover {
+  background: #9f6649;
+  transform: none;
+}
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #706357;
+  text-decoration: none;
+  font-weight: 600;
+}
+.back-link:hover {
+  color: #cf7543;
+}
+.alert-error {
+  background: #fdeded;
+  color: #d32f2f;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.back-link .mi {
+  font-size: 16px;
+  vertical-align: -3px;
+}

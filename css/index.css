@@ -1,0 +1,206 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background:
+    linear-gradient(135deg, rgba(248, 246, 242, 0.92) 0%, rgba(238, 233, 226, 0.92) 100%),
+    url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920') no-repeat center center
+      fixed;
+  background-size: cover;
+  color: #2b2623;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVIGATION BAR */
+.navbar {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(61, 47, 36, 0.05);
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #cf7543 0%, #a35024 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  box-shadow: 0 6px 16px rgba(207, 117, 67, 0.3);
+  letter-spacing: -0.5px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2c2520;
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cf7543;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 239, 233, 0.7);
+  padding: 6px;
+  border-radius: 30px;
+  border: 1px solid rgba(226, 218, 209, 0.6);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #706357;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 22px;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links a:hover {
+  color: #2c2520;
+}
+
+.nav-links a.active {
+  background: #ffffff;
+  color: #cf7543;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-weight: 700;
+}
+
+.nav-badge {
+  background: rgba(207, 117, 67, 0.12);
+  color: #cf7543;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* HERO / QUOTE SECTION */
+.hero-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+}
+
+.hero {
+  max-width: 900px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(207, 117, 67, 0.12);
+  color: #cf7543;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 800;
+  color: #2c2520;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+/* CATEGORIES BADGES */
+.hero-categories {
+  font-size: 13px;
+  font-weight: 700;
+  color: #cf7543;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cat-badge-item {
+  background: rgba(207, 117, 67, 0.08);
+  border: 1px solid rgba(207, 117, 67, 0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(207, 117, 67, 0.05);
+  cursor: default;
+}
+
+.cat-badge-item:hover {
+  background: #cf7543;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(207, 117, 67, 0.3);
+  border-color: #cf7543;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #706357;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 25px;
+  font-size: 13px;
+  color: #8c7d70;
+  border-top: 1px solid rgba(226, 218, 209, 0.6);
+  background: rgba(255, 255, 255, 0.5);
+}
